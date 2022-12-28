@@ -59,8 +59,8 @@ import { validUsername } from '@/utils/validate'
 export default {
   name: 'Login',
   data() {
-    //先不用在意：这里面在进行表单验证，验证用户名与密码操作
-    //回首在看这里
+    // 先不用在意：这里面在进行表单验证，验证用户名与密码操作
+    // 回首在看这里
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
         callback(new Error('Please enter the correct user name'))
@@ -108,19 +108,19 @@ export default {
         this.$refs.password.focus()
       })
     },
-    //登录业务：发请求，带着用户名与密码给服务器（成功与失败）
+    // 登录业务：发请求，带着用户名与密码给服务器（成功与失败）
     handleLogin() {
-      //这里是在验证表单元素（用户名与密码）的是否符合规则
+      // 这里是在验证表单元素（用户名与密码）的是否符合规则
       this.$refs.loginForm.validate(valid => {
-        //如果符合验证规则
+        // 如果符合验证规则
         if (valid) {
-          //按钮会有一个loading效果
-          this.loading = true;
-          //派发一个action:user/login,带着用户名与密码的载荷
+          // 按钮会有一个loading效果
+          this.loading = true
+          // 派发一个action:user/login,带着用户名与密码的载荷
           this.$store.dispatch('user/login', this.loginForm).then(() => {
-            //登录成功进行路由的跳转
-            this.$router.push({ path: this.redirect || '/' });
-            //loading效果结束
+            // 登录成功进行路由的跳转
+            this.$router.push({ path: this.redirect || '/' })
+            // loading效果结束
             this.loading = false
           }).catch(() => {
             this.loading = false
